@@ -7,10 +7,12 @@ import com.tylerswift.sp500tracker.service.filestorage.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 
+@RestController
 public class FileUploadController {
 
     @Autowired
@@ -22,12 +24,12 @@ public class FileUploadController {
     @Autowired
     CSVReaderService csvReaderService;
 
-    @PostMapping("/covid_file")
+    @PostMapping("/data")
     public SuccessfulResponse handleFileUpload(@RequestParam MultipartFile file) {
 
         fileStorageService.uploadFile(file);
-//        File csvFile = fileConverterService.convertToFile(file);
-//        csvReaderService.readCSV(csvFile);
+        File csvFile = fileConverterService.convertToFile(file);
+        csvReaderService.readCSV(csvFile, true);
 
         return new SuccessfulResponse(file.getName(), "Successfully uploaded file!");
     }

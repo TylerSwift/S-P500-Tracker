@@ -4,5 +4,5 @@ import java.io.File;
 
 public interface CSVReaderService {
 
-    void readCSV(File file);
+    void readCSV(File file, Boolean header);
 }

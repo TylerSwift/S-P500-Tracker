@@ -1,5 +1,6 @@
 package com.tylerswift.sp500tracker.service.filestorage;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+@Service
 public class FileStorageServiceImpl implements FileStorageService {
 
     @Override
@@ -26,5 +28,7 @@ public class FileStorageServiceImpl implements FileStorageService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 }
